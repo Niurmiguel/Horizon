@@ -1,0 +1,97 @@
+.horizon-header-overlay {
+    position: absolute;
+    z-index: 980;
+    left: 0;
+    right: 0;
+}
+
+.uk-logo {
+    color: #009688 !important;
+    font-weight: bold;
+    &:hover, &:focus, &:active {
+        color: #04baa9 !important;
+    }
+}
+
+.uk-navbar-sticky {
+    background-color: #000000;
+    border-bottom: 1px solid #009688;
+}
+
+.uk-label {
+    cursor: pointer;
+    &:hover {
+        background-color: #009688 !important;
+    }
+}
+
+
+.horizon-header {
+    .uk-navbar-nav {
+        li {
+            a {
+                color: #ffffff;
+                &:hover, &:focus, &:active{
+                    color: #009688;
+                }
+            }
+        }
+    }
+    .horizon-drop-news {
+        background-color: #000000;
+        border-bottom: 1px solid #009688;
+        .uk-slider-items {
+            padding-bottom: 40px;
+            .uk-card {
+                background-color: transparent;
+        
+                .uk-card-media-top {
+                    img {
+                        max-height: 150px;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
+        
+                .uk-card-title {
+                    font-size: 1rem;
+                    color: #ffffff;
+                }
+            }
+        }
+    
+        .uk-slidenav {
+            
+            &:hover, &:focus, &:active {
+                background-color: #009688;
+                color: #ffffff;
+            }
+    
+            svg {
+                width: 10px;
+                height: 18px;
+            }
+    
+            &.uk-slidenav-next {
+                left: 30px;
+            }
+        }
+    }
+}
+
+.horizon-header-mobile {
+    .uk-nav-primary {
+        li {
+            a {
+                font-size: 30px;
+                line-height: 1.86;
+                color: #b6b6b6;
+                transition: .1s ease-in-out;
+                transition-property: color,background-color,border-color,box-shadow;
+                padding: 5px 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,31 @@
+.hero-cover{
+    background: transparent;
+    &:before {
+        content: "";
+        background-image: linear-gradient(0deg, black, rgba(0, 150, 136, 0.15), black);
+        z-index: 0;
+        width: 100%;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+    }
+
+    & ~ div {
+        p {
+            color: #ffffff;
+        }
+    }
+}
+
+.horizon-title {
+    display: inline-block;
+    border-bottom: 3px solid rgb(0, 150, 135);
+}
+
+@media only screen and (max-width: 900px) {
+    .uk-heading-small {
+        font-size: 1.5rem;
+    }
+}

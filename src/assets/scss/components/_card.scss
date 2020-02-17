@@ -1,0 +1,39 @@
+.uk-card {
+    &.uk-card-list {
+        .uk-card-media-left {
+            img {
+                max-height: 200px;
+                object-fit: contain;
+                object-position: center;
+            }
+        }
+
+        &.uk-card-list-m {
+            .uk-card-media-right {
+                img {
+                    height: 150px !important;
+                    width: 150px !important;
+                    object-fit: contain;
+                    object-position: center;
+                }
+            }
+            .uk-card-title {
+                font-size: 0.8rem;
+            }
+
+            p {
+                font-size: 0.7rem;
+            }
+        }
+    }
+
+    &.uk-card-grid {
+        .uk-card-media-top {
+            img {
+                height: 250px;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+    }
+}

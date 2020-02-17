@@ -1,0 +1,19 @@
+$global-link-color: #009688;
+$global-secondary-background: #000000;
+$global-primary-background: #016a60;
+$global-emphasis-color: #ffffff;
+
+@import "uikit/src/scss/variables-theme.scss";
+@import "uikit/src/scss/mixins-theme.scss";
+
+@mixin hook-card() { color: #000; }
+
+@import "uikit/src/scss/uikit-theme.scss";
+
+* {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.horizon-line {
+    border-color: rgba(255, 255, 255, 0.2);
+}
