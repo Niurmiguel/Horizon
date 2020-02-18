@@ -33,7 +33,7 @@ const Page = props => {
           content="View the latest news and breaking news today for U.S., technology,  science, sports, entertainment, business and health at Horizon."
         />
       </Helmet>
-      <section className="uk-section uk-section-secondary">
+      <section className="uk-section uk-section-secondary horizon-page">
         <div className="uk-container uk-margin-large-top">
           <div uk-grid="">
             <div className="uk-width-1-1">
@@ -43,7 +43,7 @@ const Page = props => {
             </div>
           </div>
           <div uk-grid="">
-            <div className="uk-width-2-3@m">
+            <div className="uk-width-2-3@m horizon-cover">
               {cover ? (
                 <div>
                   <CardGrid

@@ -24,8 +24,36 @@
     border-bottom: 3px solid rgb(0, 150, 135);
 }
 
+.horizon-page {
+    .horizon-cover {
+        .uk-card {
+            &.uk-card-grid  {
+                .uk-card-media-top {
+                    img {
+                        height: 400px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 900px) {
     .uk-heading-small {
         font-size: 1.5rem;
+    }
+
+    .horizon-page {
+        .horizon-cover {
+            .uk-card {
+                &.uk-card-grid  {
+                    .uk-card-media-top {
+                        img {
+                            height: 300px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

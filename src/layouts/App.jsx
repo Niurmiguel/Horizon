@@ -1,12 +1,11 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Header, Footer } from "../components";
 import { Home, Page } from "../views";
-import { getNews } from "../services";
 
 const categories = [
-  "default",
+  "general",
   "sports",
   "business",
   "entertainment",
@@ -15,68 +14,76 @@ const categories = [
   "health"
 ];
 
-const App = () => {
-  const [news, setNews] = useState({});
+class App extends Component {
+  state = {
+    news: {}
+  }
 
-  useEffect(() => {
-    let newsLS = JSON.parse(localStorage.getItem("news"));
-    let req = true;
+  UNSAFE_componentWillMount() {
+    const newsLS = JSON.parse(localStorage.getItem('news'))
 
-    if (req) {
-      categories.forEach(cat => {
-        if (cat === "default") {
-          getNews().then(res => {
-            if (!newsLS) {
-              newsLS = news;
-            }
-            if (Array.isArray(res)) {
-              newsLS.default = res;
-              localStorage.setItem("news", JSON.stringify(newsLS));
-            }
-            setNews(newsLS);
-          });
-        } else {
-          getNews(cat).then(res => {
-            if (!newsLS) {
-              newsLS = news;
-            }
-            if (Array.isArray(res)) {
-              newsLS[cat] = res;
-              localStorage.setItem("news", JSON.stringify(newsLS));
-            }
-            setNews(newsLS);
-          });
-        }
-      });
-    } else {
-      setNews(JSON.parse(localStorage.getItem("news")));
+    if ( newsLS ) {
+      this.setState({ news: newsLS })
     }
-  }, []);
+  }
 
-  return (
-    <Fragment>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Horizon</title>
-        <link rel="canonical" href="http://mysite.com/example" />
-      </Helmet>
-      <Header title="Horizon" news={news} />
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={props => <Home {...props} news={news} />}
-        />
-        <Route
-          path="/:category"
-          render={props => (
-            <Page {...props} news={news[props.match.params.category]} />
-          )}
-        />
-      </Switch>
-      <Footer />
-    </Fragment>
-  );
-};
+  componentDidMount() {
+    const self = this
+
+    async function fetchNews(category) {
+      try {
+        const response = await fetch(
+          `https://newsapi.org/v2/top-headlines?country=us&category=${category}&pageSize=10&apiKey=329632789732429d8a59abefaf89e88a`
+        );
+    
+        const { articles, status, message } = await response.json();
+        
+        if (status === "ok") {
+          self.setState({ news: {
+            ...self.state.news,
+            [category] : articles
+          }}, () => {
+            localStorage.setItem("news", JSON.stringify(self.state.news));
+          })
+        } else {
+         console.log(message)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    };
+
+    categories.map( cat => fetchNews(cat) )
+  }
+
+  render() {
+    const { news } = this.state
+
+    return (
+      <Fragment>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Horizon</title>
+          <link rel="canonical" href="http://mysite.com/example" />
+        </Helmet>
+        <Header title="Horizon" news={news} />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={props => <Home {...props} news={news} />}
+          />
+          <Route
+            path="/:category"
+            render={props => (
+              <Page {...props} news={news[props.match.params.category]} />
+            )}
+          />
+        </Switch>
+        <Footer />
+      </Fragment>
+    );
+  }
+}
 
 export default App;

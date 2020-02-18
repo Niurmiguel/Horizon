@@ -12,37 +12,67 @@ const Home = ({ news }) => {
   const [science, setScience] = useState([]);
 
   useEffect(() => {
-    if (news) {
-      if (news.default) {
-        let cover = news.default.find(n => n.urlToImage);
-        setCoverNews(cover);
+    if (news.general && news.general.length > 0) {
+      let cover = news.general.find(n => n.urlToImage);
+      setCoverNews(cover);
 
-        let d = news.default;
-        d.shift();
+      let d = news.general;
+      d.shift();
 
-        setGeneral(d);
-      }
-
-      if (news.business) {
-        setBusiness(news.business);
-      }
-
-      if (news.sports) {
-        setSports(news.sports);
-      }
-
-      if (news.technology) {
-        setTechnology(news.technology);
-      }
-
-      if (news.entertainment) {
-        setEntertainment(news.entertainment);
-      }
-
-      if (news.science) {
-        setScience(news.science);
-      }
+      setGeneral(d);
     }
+
+    if (news.business) {
+      setBusiness(news.business);
+    }
+
+    if (news.sports) {
+      setSports(news.sports);
+    }
+
+    if (news.technology) {
+      setTechnology(news.technology);
+    }
+
+    if (news.entertainment) {
+      setEntertainment(news.entertainment);
+    }
+
+    if (news.science) {
+      setScience(news.science);
+    }
+
+    // if (news) {
+    //   if (news.general) {
+    //     let cover = news.general.find(n => n.urlToImage);
+    //     setCoverNews(cover);
+
+    //     let d = news.general;
+    //     d.shift();
+
+    //     setGeneral(d);
+    //   }
+
+    //   if (news.business) {
+    //     setBusiness(news.business);
+    //   }
+
+    //   if (news.sports) {
+    //     setSports(news.sports);
+    //   }
+
+    //   if (news.technology) {
+    //     setTechnology(news.technology);
+    //   }
+
+    //   if (news.entertainment) {
+    //     setEntertainment(news.entertainment);
+    //   }
+
+    //   if (news.science) {
+    //     setScience(news.science);
+    //   }
+    // }
   }, [news]);
 
   return (
